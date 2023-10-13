@@ -7,11 +7,8 @@ with open("pickleball.csv", "r") as source:
     for line in csv_reader:
         print(line)
 
-
-def remove_words(line):
-    line = re.sub(r"<.*?>", "", line)
-
-
-with open("pickleball.csv") as f:
-    for line in f.readlines():
-        print(remove_words(line))
+    with open("new_pickleball.csv", "w") as result:
+        csv_writer = csv.writer(result)
+        for r in csv_reader:
+            # r[0], r[1], r[2], r[3]
+            csv_writer.writerow((r[1]))
