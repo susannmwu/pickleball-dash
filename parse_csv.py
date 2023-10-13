@@ -1,14 +1,19 @@
 import csv
-import re
+import pandas as pd
+import matplotlib.pyplot as plt
 
-with open("pickleball.csv", "r") as source:
-    csv_reader = csv.reader(source)
+# df.columns = Index(['sep=', 'Unnamed: 1'], dtype='object')
+# Read the .csv file
+data = pd.read_csv("pb.csv")
 
-    for line in csv_reader:
-        print(line)
+col = data.columns
+print(col[2])
 
-    with open("new_pickleball.csv", "w") as result:
-        csv_writer = csv.writer(result)
-        for r in csv_reader:
-            # r[0], r[1], r[2], r[3]
-            csv_writer.writerow((r[1]))
+# Printing type of arr object
+# print("Array is of type: ", type(data))
+
+# # Printing dimensions
+# print("Printing number of dimensions: ", data.ndim)
+
+# # Printing shape of array
+# print("Printing shape of array: ", data.shape)
