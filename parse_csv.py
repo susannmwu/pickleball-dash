@@ -1,30 +1,31 @@
-import csv
 import pandas as pd
 from datetime import datetime
-import numpy as py
 import matplotlib.pyplot as plt
 
-
 # df.columns = Index(['sep=', 'Unnamed: 1'], dtype='object')
-# Read the .csv file
 
-with open("pickleball.csv", "r") as source:
-    reader = csv.reader(source)
-    # for line in reader:
-    #     print(line[4])
+# Read the .csv file using pandas
+data = pd.read_csv("pickleball.csv")
+df = pd.DataFrame(
+    data, columns=["startDate", "duration.1", "activityType"])
 
-    for line in reader:
-        original_date = line[2]
+# convert str => datetime
+# df["startDate"] is currently a str type, need to convert to datetime obj
+reformatted_date = []
 
-        duration = line[6]
-        # print(f"duration: {duration} min")
+for date in df["startDate"]:
+    date_format = "%Y-%m-%d %H:%M:%S %z"
+    date_obj = datetime.strptime(date, date_format)
+    # print(date_obj)
+    new_date = date_obj.strftime("%m-%d-%Y")
 
-########################################################
-# Printing type of arr object
-# print("Array is of type: ", type(data))
+    reformatted_date.append(new_date)
+    df["reformatted_Date"] = reformatted_date
 
-# # Printing dimensions
-# print("Printing number of dimensions: ", data.ndim)
+# pickleball workout plots
+# df.plot(x="reformatted_date", y="converted_duration", kind="bar")
+# plt.xlabel("Dates")
+# plt.ylabel("Playtime (mins)")
+# plt.title("Susan's pickleball workouts")
 
-# # Printing shape of array
-# print("Printing shape of array: ", data.shape)
+# plt.show()
