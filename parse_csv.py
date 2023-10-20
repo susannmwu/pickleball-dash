@@ -20,12 +20,12 @@ for date in df["startDate"]:
     new_date = date_obj.strftime("%m-%d-%Y")
 
     reformatted_date.append(new_date)
-    df["reformatted_Date"] = reformatted_date
+
 
 # pickleball workout plots
-# df.plot(x="reformatted_date", y="converted_duration", kind="bar")
-# plt.xlabel("Dates")
-# plt.ylabel("Playtime (mins)")
-# plt.title("Susan's pickleball workouts")
-
-# plt.show()
+df.plot(x="reformatted_date", y="converted_duration", kind="bar")
+plt.xlabel("Dates")
+plt.ylabel("Playtime (mins)")
+plt.title("Susan's pickleball workouts")
+plt.ion
+plt.show()
